@@ -26,16 +26,17 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
-        var movieID: Int
-        arguments?.getParcelable<PopularModel>("popular").let {
-            movieID = it!!.id
-        }
-        detailViewModel.getMovieDetail(movieID = movieID)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var movieID: Int
+        arguments?.getParcelable<PopularModel>("popular").let {
+            movieID = it!!.id
+        }
+        detailViewModel.getMovieDetail(movieID = movieID)
 
         detailViewModel.movieDetail.observe(this, {
             binding.apply {
